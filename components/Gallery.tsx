@@ -1,19 +1,83 @@
 'use client'
 
-import { useState } from 'react'
-import { FiX } from 'react-icons/fi'
+import { useState, useEffect } from 'react'
+import Image from 'next/image'
+import { FiX, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 
 const galleryImages = [
-  { id: 1, title: 'Mountain View from Balcony', category: 'Views' },
-  { id: 2, title: 'Cozy Living Room', category: 'Interior' },
-  { id: 3, title: 'Outdoor Dining Area', category: 'Outdoor' },
-  { id: 4, title: 'Sunset Over Mountains', category: 'Views' },
-  { id: 5, title: 'Modern Kitchen', category: 'Interior' },
-  { id: 6, title: 'Garden Area', category: 'Outdoor' },
+  { 
+    id: 1, 
+    image: '/images/gallery/Chandrashila.jpg' 
+  },
+  { 
+    id: 2, 
+    image: '/images/gallery/deoria-tal.jpg' 
+  },
+  { 
+    id: 3, 
+    image: '/images/gallery/meadows.jpg' 
+  },
+  { 
+    id: 4, 
+    image: '/images/gallery/tungnath.jpg' 
+  },
+  { 
+    id: 5, 
+    image: '/images/family-camp.jpg' 
+  },
+  { 
+    id: 6, 
+    image: '/images/about-chopta.jpg' 
+  },
+  { 
+    id: 7, 
+    image: '/images/hero-bg.jpg' 
+  },
+  { 
+    id: 8, 
+    image: '/images/photo7.jpg' 
+  },
+  { 
+    id: 9, 
+    image: '/images/photo8.jpg' 
+  },
+  // Add more images here:
+  // { 
+  //   id: 7, 
+  //   image: '/images/gallery/your-photo-name.jpg' 
+  // },
+  // { 
+  //   id: 8, 
+  //   image: '/images/gallery/another-photo.jpg' 
+  // },
 ]
 
 export default function Gallery() {
+  const [currentIndex, setCurrentIndex] = useState(0)
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
+
+  // Auto-slide functionality
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % galleryImages.length)
+    }, 3000) // Change slide every 3 seconds
+
+    return () => clearInterval(interval)
+  }, [])
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index)
+  }
+
+  const goToPrevious = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === 0 ? galleryImages.length - 1 : prevIndex - 1
+    )
+  }
+
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % galleryImages.length)
+  }
 
   return (
     <section className="py-24 bg-slate-900 text-white">
@@ -27,20 +91,66 @@ export default function Gallery() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {galleryImages.map((image, index) => (
-            <div
-              key={image.id}
-              onClick={() => setSelectedImage(index)}
-              className="relative aspect-[4/3] bg-gradient-to-br from-slate-700 to-slate-800 rounded-sm overflow-hidden cursor-pointer group hover:scale-105 transition-transform duration-300"
+        {/* Auto-sliding Carousel */}
+        <div className="relative w-full max-w-6xl mx-auto">
+          {/* Main Carousel Container */}
+          <div className="relative aspect-[16/10] rounded-sm overflow-hidden">
+            <div 
+              className="flex transition-transform duration-700 ease-in-out h-full"
+              style={{ 
+                transform: `translateX(-${currentIndex * 100}%)`
+              }}
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10"></div>
-              <div className="absolute bottom-4 left-4 right-4 z-20">
-                <p className="text-white text-sm font-light">{image.title}</p>
-                <p className="text-white/60 text-xs mt-1">{image.category}</p>
-              </div>
+              {galleryImages.map((image, index) => (
+                <div
+                  key={image.id}
+                  className="min-w-full h-full relative cursor-pointer flex-shrink-0"
+                  onClick={() => setSelectedImage(index)}
+                >
+                  <Image
+                    src={image.image}
+                    alt={`Lord Shiva Camps - ${image.image.split('/').pop()?.replace(/\.(jpg|jpeg|png)/i, '') || 'Gallery'} - Chopta Village, Uttarakhand`}
+                    fill
+                    className="object-cover"
+                    sizes="100vw"
+                    priority={index === currentIndex}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={goToPrevious}
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all z-10"
+              aria-label="Previous image"
+            >
+              <FiChevronLeft size={24} />
+            </button>
+            <button
+              onClick={goToNext}
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all z-10"
+              aria-label="Next image"
+            >
+              <FiChevronRight size={24} />
+            </button>
+          </div>
+
+          {/* Dots Indicator */}
+          <div className="flex justify-center gap-2 mt-6">
+            {galleryImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`h-2 rounded-full transition-all ${
+                  index === currentIndex 
+                    ? 'bg-white w-8' 
+                    : 'bg-white/40 w-2 hover:bg-white/60'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
@@ -52,18 +162,22 @@ export default function Gallery() {
         >
           <button
             onClick={() => setSelectedImage(null)}
-            className="absolute top-4 right-4 text-white hover:text-white/80 transition-colors"
+            className="absolute top-4 right-4 text-white hover:text-white/80 transition-colors z-50"
           >
             <FiX size={32} />
           </button>
           <div
-            className="relative max-w-6xl w-full h-full bg-gradient-to-br from-slate-700 to-slate-800 rounded-sm"
+            className="relative max-w-6xl w-full h-full max-h-[90vh]"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="absolute inset-0 flex items-center justify-center p-8">
-              <p className="text-white text-xl font-light">
-                {galleryImages[selectedImage].title}
-              </p>
+            <div className="relative w-full h-full">
+              <Image
+                src={galleryImages[selectedImage].image}
+                alt={`Gallery image ${selectedImage + 1}`}
+                fill
+                className="object-contain rounded-sm"
+                sizes="90vw"
+              />
             </div>
           </div>
         </div>

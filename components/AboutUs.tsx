@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 export default function AboutUs() {
   return (
@@ -6,14 +7,21 @@ export default function AboutUs() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="relative">
-            <div className="aspect-[4/5] bg-gradient-to-br from-slate-700 to-slate-900 rounded-sm overflow-hidden shadow-2xl">
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="text-center text-white p-8">
-                  <h3 className="text-4xl font-light mb-6">Our Story</h3>
-                  <p className="text-lg opacity-90 font-light leading-relaxed">
-                    A place where every guest becomes part of our extended family
-                  </p>
-                </div>
+            <div className="aspect-[4/5] rounded-sm overflow-hidden shadow-2xl">
+              <Image
+                src="/images/about-chopta.jpg"
+                alt="Beautiful Chopta landscape"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              {/* Overlay with "Our Story" text */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/60 to-slate-900/40"></div>
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-8">
+                <h3 className="text-4xl md:text-5xl font-light mb-6">Our Story</h3>
+                <p className="text-lg opacity-90 font-light leading-relaxed text-center max-w-md">
+                  A place where every guest becomes part of our extended family
+                </p>
               </div>
             </div>
           </div>
@@ -49,4 +57,3 @@ export default function AboutUs() {
     </section>
   )
 }
-

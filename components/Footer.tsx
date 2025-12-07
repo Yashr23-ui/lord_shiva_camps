@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { FiFacebook, FiInstagram, FiTwitter, FiMail } from 'react-icons/fi'
+import Image from 'next/image'
+import { FiInstagram, FiMail, FiMapPin, FiExternalLink } from 'react-icons/fi'
 
 export default function Footer() {
   const [email, setEmail] = useState('')
@@ -15,14 +16,13 @@ export default function Footer() {
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Newsletter subscription logic here
     alert('Thank you for subscribing!')
     setEmail('')
   }
 
   return (
     <footer className="bg-slate-900 text-white">
-      {/* Newsletter Section */}
+      {/* Newsletter Section - Optional: Remove if not needed */}
       <div className="border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="text-center mb-8">
@@ -51,9 +51,19 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div>
-            <h3 className="text-2xl font-light mb-6">Camps</h3>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="relative w-12 h-12">
+                <Image
+                  src="/images/logo.png"
+                  alt="Lord Shiva Camps Logo"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <h3 className="text-2xl font-light">Lord Shiva Camps</h3>
+            </div>
             <p className="text-white/60 font-light leading-relaxed">
-              Your adventure in nature. Experience authentic camping and create unforgettable outdoor memories.
+              Your adventure in nature. Experience authentic camping and create unforgettable outdoor memories in Chopta.
             </p>
           </div>
 
@@ -115,38 +125,38 @@ export default function Footer() {
             <h4 className="text-lg font-medium mb-6">Contact</h4>
             <ul className="space-y-3 text-white/60 font-light">
               <li>Chopta Village</li>
-              <li>Rudraprayag District, Uttarakhand</li>
-              <li>+91 (XXX) XXX-XXXX</li>
-              <li>info@camps.com</li>
+              <li>Rudraprayag District</li>
+              <li>Uttarakhand - 246419</li>
+              <li>+91 9997617346</li>
+              <li>+91 7895866292</li>
+              <li>lordshivacamps@gmail.com</li>
             </ul>
+            <a
+              href="https://share.google/uDO6QrTLbwfgQFnvD"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-4 text-white hover:text-white/80 transition-colors font-light"
+            >
+              <FiMapPin size={16} />
+              <span>View on Google Maps</span>
+              <FiExternalLink size={14} />
+            </a>
           </div>
 
           <div>
             <h4 className="text-lg font-medium mb-6">Follow Us</h4>
-            <div className="flex space-x-3">
+            <div className="flex space-x-3 mb-6">
               <a
-                href="#"
-                className="w-10 h-10 bg-slate-800 rounded-sm flex items-center justify-center hover:bg-white hover:text-slate-900 transition-all"
-                aria-label="Facebook"
-              >
-                <FiFacebook size={18} />
-              </a>
-              <a
-                href="#"
+                href="https://www.instagram.com/lord.shiva.camps/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-slate-800 rounded-sm flex items-center justify-center hover:bg-white hover:text-slate-900 transition-all"
                 aria-label="Instagram"
               >
                 <FiInstagram size={18} />
               </a>
               <a
-                href="#"
-                className="w-10 h-10 bg-slate-800 rounded-sm flex items-center justify-center hover:bg-white hover:text-slate-900 transition-all"
-                aria-label="Twitter"
-              >
-                <FiTwitter size={18} />
-              </a>
-              <a
-                href="#"
+                href="mailto:lordshivacamps@gmail.com"
                 className="w-10 h-10 bg-slate-800 rounded-sm flex items-center justify-center hover:bg-white hover:text-slate-900 transition-all"
                 aria-label="Email"
               >
@@ -157,10 +167,9 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-slate-800 pt-8 text-center text-white/40 text-sm font-light">
-          <p>&copy; {new Date().getFullYear()} Camps. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Lord Shiva Camps. All rights reserved.</p>
         </div>
       </div>
     </footer>
   )
 }
-

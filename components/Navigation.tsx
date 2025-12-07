@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { FiMenu, FiX } from 'react-icons/fi'
 
 export default function Navigation() {
@@ -33,14 +34,28 @@ export default function Navigation() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
-          <div className="flex-shrink-0">
-            <h1
-              className={`text-2xl md:text-3xl font-light transition-colors ${
-                isScrolled ? 'text-slate-900' : 'text-white'
-              }`}
+          <div className="flex-shrink-0 flex items-center gap-3">
+            <button
+              onClick={() => scrollToSection('home')}
+              className="flex items-center gap-3"
             >
-              Camps
-            </h1>
+              <div className="relative w-10 h-10 md:w-12 md:h-12">
+                <Image
+                  src="/images/logo.png"
+                  alt="Lord Shiva Camps Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+              <h1
+                className={`text-xl md:text-2xl font-light transition-colors ${
+                  isScrolled ? 'text-slate-900' : 'text-white'
+                }`}
+              >
+                Lord Shiva Camps
+              </h1>
+            </button>
           </div>
 
           {/* Desktop Menu */}
@@ -157,4 +172,3 @@ export default function Navigation() {
     </nav>
   )
 }
-

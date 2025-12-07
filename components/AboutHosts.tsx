@@ -1,18 +1,21 @@
 import React from 'react'
+import Image from 'next/image'
 import { FiHeart, FiMapPin, FiAward } from 'react-icons/fi'
 
 const hosts = [
   {
-    name: 'John & Sarah',
-    role: 'Your Hosts',
-    description: 'With over 10 years of experience in hospitality, we love sharing our home and local knowledge with travelers from around the world.',
-    interests: ['Cooking', 'Travel', 'Photography'],
+    name: 'Ravi Kandari',
+    role: 'Founder & Your Host',
+    description: 'For many years, Ravi served in maritime security, working across vast oceans and protecting people with unwavering focus. Despite the long voyages and demanding responsibilities, his heart always belonged to the mountains he grew up in. After completing his service, he returned to Chopta with a dream—to create a place where travellers could experience the peace, purity, and warmth he always found here. Today, Ravi welcomes guests with the discipline of his security background and the kindness of true Himalayan hospitality.',
+    interests: ['Maritime Security', 'Mountain Trekking', 'Local Heritage'],
+    image: '/images/host-1.jpg',
   },
   {
-    name: 'Local Community',
-    role: 'Your Guides',
-    description: 'Our extended family of local guides and neighbors are always ready to help you discover hidden gems and authentic experiences.',
-    interests: ['Culture', 'History', 'Adventure'],
+    name: 'Rahul Bisht',
+    role: 'Co-Host & Trek Guide',
+    description: 'From the oceans to the Himalayas – Rahul spent years serving in maritime security, working across international waters and protecting people with unwavering focus. Yet through every voyage, the mountains of Uttarakhand always called him back. Today, he brings together the discipline of his security background and the warmth of Himalayan hospitality—ensuring every guest feels safe, guided, and genuinely welcomed.',
+    interests: ['Maritime Security', 'Trekking', 'Mountain Culture'],
+    image: '/images/host-2.jpg',
   },
 ]
 
@@ -32,70 +35,93 @@ export default function AboutHosts() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        {/* Hosts Section - Large Photos */}
+        <div className="space-y-24 mb-20">
           {hosts.map((host, index) => (
             <div
               key={index}
-              className="bg-slate-50 p-8 rounded-sm border border-slate-200 hover:shadow-lg transition-all duration-300"
+              className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
+                index % 2 === 1 ? 'lg:grid-flow-dense' : ''
+              }`}
             >
-              <div className="flex items-center mb-6">
-                <div className="w-20 h-20 bg-slate-900 rounded-sm flex items-center justify-center text-white text-2xl font-light mr-6">
-                  {host.name.charAt(0)}
-                </div>
-                <div>
-                  <h3 className="text-2xl font-medium text-slate-900">{host.name}</h3>
-                  <p className="text-slate-600 font-light">{host.role}</p>
+              {/* Image - Large and Prominent */}
+              <div className={`relative ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
+                <div className="relative aspect-[4/5] rounded-sm overflow-hidden shadow-2xl">
+                  <Image
+                    src={host.image}
+                    alt={host.name}
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                  {/* Overlay with name at bottom */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                    <h3 className="text-3xl md:text-4xl font-light mb-2">{host.name}</h3>
+                    <p className="text-lg text-white/90 font-light">{host.role}</p>
+                  </div>
                 </div>
               </div>
-              <p className="text-slate-600 mb-6 leading-relaxed font-light">
-                {host.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {host.interests.map((interest, i) => (
-                  <span
-                    key={i}
-                    className="px-4 py-2 bg-slate-900 text-white rounded-sm text-sm font-light"
-                  >
-                    {interest}
-                  </span>
-                ))}
+
+              {/* Content */}
+              <div className={index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}>
+                <div className="space-y-6">
+                  <p className="text-lg text-slate-600 leading-relaxed font-light">
+                    {host.description}
+                  </p>
+                  
+                  {/* Interests/Tags */}
+                  <div className="flex flex-wrap gap-3">
+                    {host.interests.map((interest, i) => (
+                      <span
+                        key={i}
+                        className="px-5 py-2.5 bg-slate-900 text-white rounded-sm text-sm font-light tracking-wide"
+                      >
+                        {interest}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-slate-50 p-8 rounded-sm border border-slate-200 text-center">
+        {/* Why Choose Us - Feature Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
+          <div className="text-center p-8 bg-slate-50 rounded-sm border border-slate-200 hover:shadow-lg transition-shadow">
             <div className="w-16 h-16 bg-slate-900 rounded-sm flex items-center justify-center mx-auto mb-6">
-              <FiHeart className="text-white" size={28} />
+              <FiHeart className="text-white" size={32} />
             </div>
             <h3 className="text-xl font-medium text-slate-900 mb-3">
               Passionate Hosts
             </h3>
-            <p className="text-slate-600 font-light">
-              We genuinely care about your experience and comfort
+            <p className="text-slate-600 font-light leading-relaxed">
+              We genuinely care about your experience and comfort, ensuring every moment is memorable
             </p>
           </div>
-          <div className="bg-slate-50 p-8 rounded-sm border border-slate-200 text-center">
+          
+          <div className="text-center p-8 bg-slate-50 rounded-sm border border-slate-200 hover:shadow-lg transition-shadow">
             <div className="w-16 h-16 bg-slate-900 rounded-sm flex items-center justify-center mx-auto mb-6">
-              <FiMapPin className="text-white" size={28} />
+              <FiMapPin className="text-white" size={32} />
             </div>
             <h3 className="text-xl font-medium text-slate-900 mb-3">
               Local Experts
             </h3>
-            <p className="text-slate-600 font-light">
-              Get the best recommendations from people who know the area
+            <p className="text-slate-600 font-light leading-relaxed">
+              Deep knowledge of every trail and the best recommendations from those who know the mountains
             </p>
           </div>
-          <div className="bg-slate-50 p-8 rounded-sm border border-slate-200 text-center">
+          
+          <div className="text-center p-8 bg-slate-50 rounded-sm border border-slate-200 hover:shadow-lg transition-shadow">
             <div className="w-16 h-16 bg-slate-900 rounded-sm flex items-center justify-center mx-auto mb-6">
-              <FiAward className="text-white" size={28} />
+              <FiAward className="text-white" size={32} />
             </div>
             <h3 className="text-xl font-medium text-slate-900 mb-3">
-              Award-Winning Service
+              Safety First
             </h3>
-            <p className="text-slate-600 font-light">
-              Recognized for excellence in hospitality and guest satisfaction
+            <p className="text-slate-600 font-light leading-relaxed">
+              With maritime security backgrounds, your safety and security are always our top priorities
             </p>
           </div>
         </div>
@@ -103,4 +129,3 @@ export default function AboutHosts() {
     </section>
   )
 }
-

@@ -18,7 +18,7 @@ const treks = [
     duration: '2-3 Days',
     description: 'A challenging trek that rewards with 360-degree views of snow-capped peaks including Nanda Devi, Trishul, and Chaukhamba.',
     highlights: ['360° Mountain Views', 'Sunrise Views', 'Challenging Route'],
-    image: '/images/gallery/chandrashila.jpg',
+    image: '/images/gallery/Chandrashila.jpg',
   },
   {
     name: 'Deoria Tal Trek',

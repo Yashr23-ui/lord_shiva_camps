@@ -5,14 +5,14 @@ import { FiHeart, FiMapPin, FiAward } from 'react-icons/fi'
 const hosts = [
   {
     name: 'Ravi Kandari',
-    role: 'Founder & Your Host',
+    role: 'Host1',
     description: 'For many years, Ravi served in maritime security, working across vast oceans and protecting people with unwavering focus. Despite the long voyages and demanding responsibilities, his heart always belonged to the mountains he grew up in. After completing his service, he returned to Chopta with a dream—to create a place where travellers could experience the peace, purity, and warmth he always found here. Today, Ravi welcomes guests with the discipline of his security background and the kindness of true Himalayan hospitality.',
     interests: ['Maritime Security', 'Mountain Trekking', 'Local Heritage'],
     image: '/images/host-1.jpg',
   },
   {
     name: 'Rahul Bisht',
-    role: 'Co-Host & Trek Guide',
+    role: 'Host2',
     description: 'From the oceans to the Himalayas – Rahul spent years serving in maritime security, working across international waters and protecting people with unwavering focus. Yet through every voyage, the mountains of Uttarakhand always called him back. Today, he brings together the discipline of his security background and the warmth of Himalayan hospitality—ensuring every guest feels safe, guided, and genuinely welcomed.',
     interests: ['Maritime Security', 'Trekking', 'Mountain Culture'],
     image: '/images/host-2.jpg',

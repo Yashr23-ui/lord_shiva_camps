@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { FiMail, FiPhone, FiMapPin, FiSend, FiClock, FiCheckCircle, FiAlertCircle, FiExternalLink } from 'react-icons/fi'
+import { FiMail, FiPhone, FiMapPin, FiSend, FiCheckCircle, FiAlertCircle, FiExternalLink } from 'react-icons/fi'
 import emailjs from '@emailjs/browser'
 
 export default function ContactUs() {
@@ -135,8 +135,8 @@ export default function ContactUs() {
                 <div className="ml-6">
                   <h4 className="font-medium text-slate-900 mb-2">Phone</h4>
                   <p className="text-slate-600 font-light">
-                    +91 9997617346<br />
-                    +91 7895866292
+                    +91 9997617346 (Primary)<br />
+                    +91 7895866292 (Secondary)
                   </p>
                 </div>
               </div>
@@ -149,20 +149,6 @@ export default function ContactUs() {
                   <h4 className="font-medium text-slate-900 mb-2">Email</h4>
                   <p className="text-slate-600 font-light">
                     lordshivacamps@gmail.com<br />
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-10 p-6 bg-slate-900 text-white rounded-sm">
-              <div className="flex items-start mb-4">
-                <FiClock className="mt-1 mr-3 flex-shrink-0" size={20} />
-                <div>
-                  <h4 className="font-medium mb-3">Business Hours</h4>
-                  <p className="text-white/80 font-light leading-relaxed">
-                    Monday - Friday: 9:00 AM - 6:00 PM<br />
-                    Saturday: 10:00 AM - 4:00 PM<br />
-                    Sunday: Closed
                   </p>
                 </div>
               </div>
@@ -349,4 +335,3 @@ export default function ContactUs() {
     </section>
   )
 }
-

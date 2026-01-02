@@ -127,8 +127,8 @@ export default function Footer() {
               <li>Chopta Village</li>
               <li>Rudraprayag District</li>
               <li>Uttarakhand - 246419</li>
-              <li>+91 9997617346</li>
-              <li>+91 7895866292</li>
+              <li>+91 9997617346 (Primary)</li>
+              <li>+91 7895866292 (Secondary)</li>
               <li>lordshivacamps@gmail.com</li>
             </ul>
             <a
